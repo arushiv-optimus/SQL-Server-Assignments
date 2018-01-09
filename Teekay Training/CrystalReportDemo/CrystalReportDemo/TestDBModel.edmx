@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TeekayTrainingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="225" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerAddress" Type="varchar" MaxLength="225" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Emp_Salary">
+          <Key>
+            <PropertyRef Name="SalaryID" />
+          </Key>
+          <Property Name="SalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Salary" Type="int" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Designations" Type="varchar" MaxLength="50" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="age" Type="int" />
+          <Property Name="ActiveStatus" Type="bit" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="age" Type="int" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="SalaryID" Type="int" />
+        </EntityType>
+        <EntityType Name="MyEmployees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="smallint" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeptID" Type="smallint" Nullable="false" />
+          <Property Name="ManagerID" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="OrderDate" Type="date" />
+          <Property Name="ShipperID" Type="int" />
+          <Property Name="Country" Type="int" />
+          <Property Name="PersonID" Type="int" />
+        </EntityType>
+        <EntityType Name="Persons">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" />
+          <Property Name="PersonAddress" Type="varchar" MaxLength="255" />
+          <Property Name="City" Type="varchar" MaxLength="255" />
+          <Property Name="Age" Type="int" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="225" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="UnitsInStock" Type="int" />
+          <Property Name="UnitsOnOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierName" Type="varchar" MaxLength="225" />
+          <Property Name="ContactName" Type="varchar" MaxLength="50" />
+          <Property Name="SupplierAddress" Type="varchar" MaxLength="225" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TeekayTraining.dbo.EmployeesDetalsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmployeesDetalsView">
+          <Key>
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="Sex" />
+          </Key>
+          <Property Name="FirstName" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="age" Type="int" />
+        </EntityType>
+        <Association Name="FK_PersonOrder">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CheckLeapYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="year" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CreateCustomers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="custName" Type="varchar" Mode="In" />
+          <Parameter Name="contactNumber" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="city" Type="varchar" Mode="In" />
+          <Parameter Name="country" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CreateOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="customerID" Type="int" Mode="In" />
+          <Parameter Name="employeeId" Type="int" Mode="In" />
+          <Parameter Name="orderDate" Type="date" Mode="In" />
+          <Parameter Name="shipperID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CreatePersons" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lastName" Type="varchar" Mode="In" />
+          <Parameter Name="firstName" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="city" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CreateProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productName" Type="varchar" Mode="In" />
+          <Parameter Name="unitPrice" Type="decimal" Mode="In" />
+          <Parameter Name="unitsInStock" Type="int" Mode="In" />
+          <Parameter Name="unitsOnOrder" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CreateSuppliers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="supplierName" Type="varchar" Mode="In" />
+          <Parameter Name="contactNumber" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="city" Type="varchar" Mode="In" />
+          <Parameter Name="country" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="EmployeeDeatils" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetErrorInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LeapYearCheaker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+          <Parameter Name="year" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SelectAllEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="TeekayTrainingModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emp_Salary" EntityType="Self.Emp_Salary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MyEmployees" EntityType="Self.MyEmployees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeesDetalsView" EntityType="Self.EmployeesDetalsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EmployeesDetalsView].[FirstName] AS [FirstName], 
+    [EmployeesDetalsView].[LastName] AS [LastName], 
+    [EmployeesDetalsView].[Sex] AS [Sex], 
+    [EmployeesDetalsView].[age] AS [age]
+    FROM [dbo].[EmployeesDetalsView] AS [EmployeesDetalsView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_PersonOrder" Association="Self.FK_PersonOrder">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TeekayTrainingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Department1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Emp_Salary">
+          <Key>
+            <PropertyRef Name="SalaryID" />
+          </Key>
+          <Property Name="SalaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Salary" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Designations" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="ActiveStatus" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Employee1">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="SalaryID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MyEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int16" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeptID" Type="Int16" Nullable="false" />
+          <Property Name="ManagerID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="0" />
+          <Property Name="ShipperID" Type="Int32" />
+          <Property Name="Country" Type="Int32" />
+          <Property Name="PersonID" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_PersonOrder" FromRole="Orders" ToRole="Persons" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PersonAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_PersonOrder" FromRole="Persons" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UnitsInStock" Type="Int32" />
+          <Property Name="UnitsOnOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierName" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
+          <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SupplierAddress" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EmployeesDetalsView">
+          <Key>
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="Sex" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="age" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_PersonOrder">
+          <End Role="Persons" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TeekayTrainingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Emp_Salary" EntityType="Self.Emp_Salary" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Employees1" EntityType="Self.Employee1" />
+          <EntitySet Name="MyEmployees" EntityType="Self.MyEmployee" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Persons" EntityType="Self.Person" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="EmployeesDetalsViews" EntityType="Self.EmployeesDetalsView" />
+          <AssociationSet Name="FK_PersonOrder" Association="Self.FK_PersonOrder">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <FunctionImport Name="CreateCustomers">
+            <Parameter Name="custName" Mode="In" Type="String" />
+            <Parameter Name="contactNumber" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="city" Mode="In" Type="String" />
+            <Parameter Name="country" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateOrders">
+            <Parameter Name="customerID" Mode="In" Type="Int32" />
+            <Parameter Name="employeeId" Mode="In" Type="Int32" />
+            <Parameter Name="orderDate" Mode="In" Type="DateTime" />
+            <Parameter Name="shipperID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CreatePersons">
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="city" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateProducts">
+            <Parameter Name="productName" Mode="In" Type="String" />
+            <Parameter Name="unitPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="unitsInStock" Mode="In" Type="Int32" />
+            <Parameter Name="unitsOnOrder" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CreateSuppliers">
+            <Parameter Name="supplierName" Mode="In" Type="String" />
+            <Parameter Name="contactNumber" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="city" Mode="In" Type="String" />
+            <Parameter Name="country" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EmployeeDeatils" ReturnType="Collection(TeekayTrainingModel.EmployeeDeatils_Result)">
+          <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetErrorInfo" ReturnType="Collection(TeekayTrainingModel.GetErrorInfo_Result)" />
+          <FunctionImport Name="SelectAllEmployee" ReturnType="Collection(TeekayTrainingModel.SelectAllEmployee_Result)" />
+          <FunctionImport Name="GetEmployeeReport" EntitySet="Employees1" ReturnType="Collection(TeekayTrainingModel.Employee1)">
+            <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="EmployeeDeatils_Result">
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Sex" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="age" Nullable="true" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Salary" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetErrorInfo_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="SelectAllEmployee_Result">
+          <Property Type="String" Name="FIRST_NAME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LAST_NAME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SEX" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="DESIGNATION" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SALARY" Nullable="true" />
+          <Property Type="Int32" Name="AGE" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TeekayTrainingModelStoreContainer" CdmEntityContainer="TeekayTrainingEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="TeekayTrainingModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="TeekayTrainingModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Department1" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emp_Salary">
+            <EntityTypeMapping TypeName="TeekayTrainingModel.Emp_Salary">
+              <MappingFragment StoreEntitySet="Emp_Salary">
+                <ScalarProperty Name="SalaryID" ColumnName="SalaryID" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="TeekayTrainingModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Designations" ColumnName="Designations" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="ActiveStatus" ColumnName="ActiveStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees1">
+            <EntityTypeMapping TypeName="TeekayTrainingModel.Employee1">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="SalaryID" ColumnName="SalaryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyEmployees">
+            <EntityTypeMapping TypeName="TeekayTrainingModel.MyEmployee">
+              <MappingFragment StoreEntitySet="MyEmployees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="TeekayTrainingModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="ShipperID" ColumnName="ShipperID" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persons">
+            <EntityTypeMapping TypeName="TeekayTrainingModel.Person">
+              <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PersonAddress" ColumnName="PersonAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="TeekayTrainingModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
+                <ScalarProperty Name="UnitsOnOrder" ColumnName="UnitsOnOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="TeekayTrainingModel.Supplier">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="SupplierAddress" ColumnName="SupplierAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeesDetalsViews">
+            <EntityTypeMapping TypeName="TeekayTrainingModel.EmployeesDetalsView">
+              <MappingFragment StoreEntitySet="EmployeesDetalsView">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="age" ColumnName="age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateCustomers" FunctionName="TeekayTrainingModel.Store.CreateCustomers" />
+          <FunctionImportMapping FunctionImportName="CreateOrders" FunctionName="TeekayTrainingModel.Store.CreateOrders" />
+          <FunctionImportMapping FunctionImportName="CreatePersons" FunctionName="TeekayTrainingModel.Store.CreatePersons" />
+          <FunctionImportMapping FunctionImportName="CreateProducts" FunctionName="TeekayTrainingModel.Store.CreateProducts" />
+          <FunctionImportMapping FunctionImportName="CreateSuppliers" FunctionName="TeekayTrainingModel.Store.CreateSuppliers" />
+          <FunctionImportMapping FunctionImportName="EmployeeDeatils" FunctionName="TeekayTrainingModel.Store.EmployeeDeatils">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TeekayTrainingModel.EmployeeDeatils_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetErrorInfo" FunctionName="TeekayTrainingModel.Store.GetErrorInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TeekayTrainingModel.GetErrorInfo_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectAllEmployee" FunctionName="TeekayTrainingModel.Store.SelectAllEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TeekayTrainingModel.SelectAllEmployee_Result">
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST NAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST NAME" />
+                <ScalarProperty Name="SEX" ColumnName="SEX" />
+                <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+                <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetEmployeeReport" FunctionName="TeekayTrainingModel.Store.EmployeeDeatils" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CrystalReportDemo.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<p>
+    <div>Click Here To Download Employe Report in PDF<a href="@Url.Action("EmployeeReport")"> Employee Report </a></div>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+
+    </tr>
+}
+
+    <tr>
+        <td>
+
+            <p>
+                <div>Click Here To Download All Customer Report in PDF<a href="@Url.Action("ExportCustomers")"> Download </a></div>
+            </p>
+        </td>
+    </tr>
+</table>
