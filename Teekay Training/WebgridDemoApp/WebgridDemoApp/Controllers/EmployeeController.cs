@@ -12,11 +12,11 @@ namespace WebgridDemoApp.Controllers
     {
         // GET: Employee
         public ActionResult Index()
-        {
+          {
             EmpRepository empRepository = new EmpRepository();
             ModelState.Clear();
-            return View(empRepository.GetAllEmployees());
-        }
+             return View(empRepository.GetAllEmployees());
+         }
 
         //Get : Create Employee
         public ActionResult Create()

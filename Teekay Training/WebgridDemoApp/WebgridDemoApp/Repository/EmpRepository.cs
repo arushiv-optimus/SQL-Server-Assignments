@@ -65,7 +65,7 @@ namespace WebgridDemoApp.Repository
 
             //Bind EmpModel generic list using dataRow
             foreach(DataRow dr in dt.Rows)
-            {
+              {
                 EmpList.Add(
                     new EmpModel
                     {
@@ -76,7 +76,7 @@ namespace WebgridDemoApp.Repository
 
                     }
                     );
-            }
+             }
 
             return EmpList;
 
